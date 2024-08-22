@@ -8,6 +8,7 @@ async function checkWeather(city) {
         const response = await fetch(apiUrl + `&q=${city}` + `&appid=${apiKey}`);
         if (response.status===404){
             document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
             throw new Error("City not found");
         }
         if (!response.ok) {
@@ -24,7 +25,7 @@ async function checkWeather(city) {
 
         weatherIcon.src=`./images/${data.weather[0].main}.png`;
 
-
+        document.querySelector(".error").style.display = "none";
         document.querySelector(".weather").style.display="block";
         
     } catch (e) {
